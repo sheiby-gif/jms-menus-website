@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String?
+  company   String
+  address   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders Order[]
+
+  @@map("clients")
+}
+
+model Design {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  category    String
+  price       Float
+  imageUrl    String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orders Order[]
+
+  @@map("designs")
+}
+
+model Employee {
+  id        String       @id @default(cuid())
+  name      String
+  email     String       @unique
+  role      EmployeeRole
+  isActive  Boolean      @default(true)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  orders Order[]
+
+  @@map("employees")
+}
+
+model Order {
+  id         String      @id @default(cuid())
+  clientId   String
+  designId   String
+  quantity   Int
+  totalPrice Float
+  status     OrderStatus @default(pending)
+  notes      String?
+  employeeId String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  client   Client   @relation(fields: [clientId], references: [id])
+  design   Design   @relation(fields: [designId], references: [id])
+  employee Employee @relation(fields: [employeeId], references: [id])
+
+  @@map("orders")
+}
+
+enum OrderStatus {
+  pending
+  confirmed
+  in_production
+  completed
+  cancelled
+}
+
+enum EmployeeRole {
+  admin
+  sales
+  designer
+  manager
+} 
