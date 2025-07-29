@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react'
 import { 
-  DatabaseIcon, 
   CloudArrowUpIcon, 
   CloudArrowDownIcon,
   DocumentArrowUpIcon,
@@ -11,7 +10,8 @@ import {
   ChartBarIcon,
   ExclamationTriangleIcon,
   CheckCircleIcon,
-  ClockIcon
+  ClockIcon,
+  ServerIcon
 } from '@heroicons/react/24/outline'
 
 interface DatabaseStats {
@@ -125,7 +125,7 @@ export default function DatabaseManager() {
   }
 
   const tabs = [
-    { id: 'overview', name: 'Overview', icon: DatabaseIcon },
+    { id: 'overview', name: 'Overview', icon: ServerIcon },
     { id: 'operations', name: 'Operations', icon: CogIcon },
     { id: 'migrations', name: 'Migrations', icon: DocumentArrowUpIcon },
     { id: 'backup', name: 'Backup & Restore', icon: CloudArrowUpIcon },
@@ -197,7 +197,7 @@ export default function DatabaseManager() {
               <div className="p-5">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <DatabaseIcon className="h-6 w-6 text-gray-400" />
+                    <ServerIcon className="h-6 w-6 text-gray-400" />
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
@@ -268,7 +268,7 @@ export default function DatabaseManager() {
                 disabled={isLoading}
                 className="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
               >
-                <DatabaseIcon className="h-5 w-5 mr-2" />
+                <ServerIcon className="h-5 w-5 mr-2" />
                 Seed Database
               </button>
               
