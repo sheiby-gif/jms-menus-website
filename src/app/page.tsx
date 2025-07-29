@@ -10,7 +10,7 @@ export default function WelcomePage() {
       <div className="bg-white shadow-lg rounded-xl p-10 max-w-lg w-full flex flex-col items-center">
         <div className="flex items-center mb-6">
           <ServerIcon className="w-10 h-10 text-green-600 mr-3" />
-          <span className="text-2xl font-bold text-gray-900">JMS Menus Internal Orders</span>
+          <span className="text-2xl font-bold text-gray-900">JMS Menus Internal Orders - LIVE!</span>
         </div>
         <h1 className="text-xl font-semibold text-gray-800 mb-4 text-center">
           Welcome to the JMS Menus Internal Order System
